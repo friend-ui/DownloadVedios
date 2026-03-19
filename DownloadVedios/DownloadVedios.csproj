@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    
+    <SelfContained Condition="'$(Configuration)' == 'Release'">true</SelfContained>
+    <PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract Condition="'$(Configuration)' == 'Release'">true</IncludeNativeLibrariesForSelfExtract>
+    <RuntimeIdentifier Condition="'$(Configuration)' == 'Release'">win-x64</RuntimeIdentifier>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Release'">true</PublishReadyToRun>
+    <PublishDir>..\_pulish</PublishDir>
+  </PropertyGroup>
+
+  <Target Name="CopyYtDlpFolder" AfterTargets="Publish">
+    <ItemGroup>
+      <YtDlpFiles Include="..\yt-dlp\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(YtDlpFiles)" DestinationFiles="@(YtDlpFiles->'$(PublishDir)\yt-dlp\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <Target Name="CopyYtDlpFolderDebug" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <ItemGroup>
+      <YtDlpFiles Include="..\yt-dlp\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(YtDlpFiles)" DestinationFiles="@(YtDlpFiles->'$(OutDir)\yt-dlp\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+</Project>

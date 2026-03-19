@@ -1,0 +1,57 @@
+<Window x:Class="DownloadVedios.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DownloadVedios"
+        mc:Ignorable="d"
+        Title="视频下载器" Height="600" Width="700">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="视频链接:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Name="UrlTextBox" Height="30" Padding="5"/>
+            <Button Grid.Column="1" Content="确定" Width="80" Height="30" Margin="10,0,0,0" Click="ConfirmUrlButton_Click"/>
+        </Grid>
+
+        <TextBlock Grid.Row="2" Text="画质选择:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <ComboBox Grid.Row="3" Name="QualityComboBox" Height="30" Margin="0,0,0,15" Padding="5" IsEnabled="False"/>
+
+        <TextBlock Grid.Row="4" Text="下载路径:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <Grid Grid.Row="5" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Name="PathTextBox" Height="30" Padding="5" IsReadOnly="True"/>
+            <Button Grid.Column="1" Content="浏览..." Width="80" Height="30" Margin="10,0,0,0" Click="BrowseButton_Click"/>
+            <Button Grid.Column="2" Content="打开" Width="80" Height="30" Margin="10,0,0,0" Click="OpenFolderButton_Click"/>
+        </Grid>
+
+        <TextBlock Grid.Row="6" Name="StatusTextBlock" Text="" Foreground="Green" FontWeight="Bold" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+        <TextBlock Grid.Row="7" Text="下载进度:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <ProgressBar Grid.Row="7" Name="DownloadProgressBar" Height="20" Margin="0,25,0,10" Visibility="Collapsed" IsIndeterminate="True"/>
+
+        <TextBlock Grid.Row="7" Text="输出信息:" FontWeight="Bold" Margin="0,40,0,5"/>
+        <TextBox Grid.Row="7" Name="OutputTextBox" Margin="0,60,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Background="#F5F5F5"/>
+
+        <Button Grid.Row="8" Name="DownloadButton" Content="下载" Height="40" FontSize="16" FontWeight="Bold" Click="DownloadButton_Click" IsEnabled="False"/>
+    </Grid>
+</Window>
